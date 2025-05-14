@@ -1,10 +1,7 @@
-Here's a polished, professional rewrite of your README.md file for Tosh AutoHub:
-
 ```markdown
 # 🚗 Tosh AutoHub - Luxury Automotive Showcase
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![Responsive Design](https://img.shields.io/badge/Responsive-Yes-brightgreen)
+Live Project link : https://tosh-autohub.netlify.app/
 
 **Tosh AutoHub** is an elegant digital showroom for a premium car dealership, offering customers a sophisticated online experience to explore luxury vehicles, learn about our legacy, and connect with our team.
 
