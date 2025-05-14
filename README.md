@@ -86,7 +86,7 @@ tosh-autohub/
 | Contact Method       | Details                          |
 |----------------------|----------------------------------|
 | 📞 Phone            | (+254) 711 527 211              |
-| ✉️ Email           | info@toshautohub.com            |
+| ✉️ Email           | adelewigitz@gmail.com            |
 | 🏢 Location        | Waiyaki Way, Westlands, Kenya   |
 | 🌐 Social Media    | [@ToshAutoHub](#)               |
 
