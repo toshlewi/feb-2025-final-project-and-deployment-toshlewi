@@ -70,7 +70,7 @@ tosh-autohub/
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/toshlewi/tosh-autohub.git
+   git clone https://github.com/toshlewi/feb-2025-final-project-and-deployment-toshlewi.git
    ```
 
 2. **Navigate to project directory**:
