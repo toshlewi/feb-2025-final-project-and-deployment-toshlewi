@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Tosh AutoHub</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(44, 62, 80, 0.95);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        /* Page Banner */
+        .page-banner {
+            height: 50vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding-top: 80px;
+        }
+
+        .page-banner-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-title {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .breadcrumb {
+            display: flex;
+            list-style: none;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .breadcrumb li {
+            margin-right: 10px;
+        }
+
+        .breadcrumb li::after {
+            content: '/';
+            margin-left: 10px;
+        }
+
+        .breadcrumb li:last-child::after {
+            content: '';
+        }
+
+        .breadcrumb a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Our History */
+        .history-section {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--dark);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            animation: fadeIn 1s;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid var(--secondary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content span {
+            font-weight: bold;
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            color: var(--dark);
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .member-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .member-info span {
+            color: var(--secondary);
+            font-weight: 500;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .member-info p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .member-social {
+            display: flex;
+            justify-content: center;
+        }
+
+        .member-social a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background-color: var(--light);
+            border-radius: 50%;
+            color: var(--dark);
+            text-align: center;
+            line-height: 35px;
+            margin: 0 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .member-social a:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 5rem 0;
+            background-color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-item {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .value-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .value-item h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .value-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Car Animation */
+        .car-animation {
+            position: absolute;
+            bottom: -100px;
+            left: -300px;
+            width: 250px;
+            height: auto;
+            animation: driveCar 20s linear infinite;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        @keyframes driveCar {
+            from {
+                left: -300px;
+                transform: scaleX(1);
+            }
+            48% {
+                left: 100%;
+                transform: scaleX(1);
+            }
+            50% {
+                left: 100%;
+                transform: scaleX(-1);
+            }
+            98% {
+                left: -300px;
+                transform: scaleX(-1);
+            }
+            100% {
+                left: -300px;
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Call to Action Section */
+        .cta {
+            padding: 5rem 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.pexels.com/photos/3807150/pexels-photo-3807150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .footer-section p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 35px;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                margin-bottom: 2rem;
+                height: 400px;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 18px;
+                right: auto;
+            }
+
+            .timeline-item:nth-child(even)::after {
+                left: 18px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                display: none;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+
+            nav ul li {
+                margin: 0;
+                width: 100%;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 1rem 2rem;
+            }
+
+            nav ul li a::after {
+                display: none;
+            }
+
+            nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .page-banner {
+                height: 40vh;
+            }
+
+            .page-title h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Tosh <span>AutoHub</span></h1>
+                </div>
+                <div class="mobile-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="inventory.html">Inventory</a></li>
+                        <li><a href="about.html" class="active">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="page-banner-bg"></div>
+        <div class="container">
+            <div class="page-title">
+                <h1>About Us</h1>
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>About Us</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/97079/pexels-photo-97079.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Tosh AutoHub Showroom">
+                </div>
+                <div class="about-text">
+                    <h2>Welcome to Tosh AutoHub</h2>
+                    <p>Established in 2008, Tosh AutoHub has grown from a small local dealership to one of the most reputable premium car retailers in the region. Our journey began with a simple vision: to provide exceptional vehicles and superior customer service.</p>
+                    <p>At Tosh AutoHub, we believe that buying a car should be an exciting and fulfilling experience. Our team of automotive enthusiasts is dedicated to helping you find the perfect vehicle that matches your lifestyle, needs, and budget. We pride ourselves on our transparent approach, honest communication, and commitment to customer satisfaction.</p>
+                    <p>Our showroom features a carefully curated selection of premium vehicles, each meticulously inspected and prepared to meet our stringent quality standards. From luxury sedans to high-performance sports cars and family-friendly SUVs, we offer a diverse range of options to cater to different preferences and requirements.</p>
+                    <p>Beyond selling cars, we are committed to building lasting relationships with our customers. Our comprehensive after-sales service ensures that your vehicle remains in optimal condition throughout its lifetime, giving you peace of mind and confidence in your purchase.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our History -->
+    <section class="history-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Journey</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span>2008</span>
+                        <h3>The Beginning</h3>
+                        <p>Tosh AutoHub was founded by automotive enthusiast James Tosh with a small showroom and a team of three dedicated professionals.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span>2011</span>
+                        <h3>Expansion</h3>
+                        <p>After three successful years, we expanded our operations by moving to a larger showroom and increasing our inventory to include more premium brands.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span>2014</span>
+                        <h3>Service Center</h3>
+                        <p>We opened our state-of-the-art service center to provide comprehensive maintenance and repair services to our growing customer base.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span>2018</span>
+                        <h3>Industry Recognition</h3>
+                        <p>Tosh AutoHub was recognized as one of the top automotive retailers in the region, receiving multiple awards for customer satisfaction and business excellence.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span>2021</span>
+                        <h3>Digital Transformation</h3>
+                        <p>We embraced digital technology to enhance the customer experience, launching our online inventory system and virtual showroom tours.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span>2025</span>
+                        <h3>Today</h3>
+                        <p>With a team of over 50 professionals and a reputation for excellence, Tosh AutoHub continues to grow while maintaining its commitment to quality and customer service.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Team</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="James Tosh">
+                    <div class="member-info">
+                        <h3>Lewis Tosh</h3>
+                        <span>Founder & CEO</span>
+                        <p>With over 25 years of experience in the automotive industry, James leads the company with passion and vision.</p>
+                        <div class="member-social">
+                            <a href="#">LI</a>
+                            <a href="#">TW</a>
+                            <a href="#">EM</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Sarah Chen">
+                    <div class="member-info">
+                        <h3>Sarah Chen</h3>
+                        <span>Sales Director</span>
+                        <p>Sarah's customer-centric approach and in-depth knowledge of luxury vehicles make her an invaluable asset to our team.</p>
+                        <div class="member-social">
+                            <a href="#">LI</a>
+                            <a href="#">TW</a>
+                            <a href="#">EM</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Michael Rodriguez">
+                    <div class="member-info">
+                        <h3>Michael Rodriguez</h3>
+                        <span>Head of Service</span>
+                        <p>Michael leads our service department with precision and expertise, ensuring every vehicle performs at its best.</p>
+                        <div class="member-social">
+                            <a href="#">LI</a>
+                            <a href="#">TW</a>
+                            <a href="#">EM</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.pexels.com/photos/773371/pexels-photo-773371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Emma Wilson">
+                    <div class="member-info">
+                        <h3>Emma Muthoni</h3>
+                        <span>Customer Relations</span>
+                        <p>Emma ensures that every customer receives personalized attention and support throughout their journey with us.</p>
+                        <div class="member-social">
+                            <a href="#">LI</a>
+                            <a href="#">TW</a>
+                            <a href="#">EM</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <img src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Car" class="car-animation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Core Values</h2>
+            </div>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">🔍</div>
+                    <h3>Quality</h3>
+                    <p>We are committed to offering only the highest quality vehicles that meet our stringent standards for performance, reliability, and aesthetics.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">💼</div>
+                    <h3>Integrity</h3>
+                    <p>Honesty and transparency are at the core of our business practices. We believe in building trust through clear communication and ethical dealings.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">👥</div>
+                    <h3>Customer Focus</h3>
+                    <p>Our customers are our priority. We strive to understand their needs and preferences to provide personalized solutions and exceptional service.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🌱</div>
+                    <h3>Innovation</h3>
+                    <p>We continuously seek new ways to improve our services, embrace emerging technologies, and stay ahead of industry trends.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🤝</div>
+                    <h3>Community</h3>
+                    <p>We believe in giving back to the community that supports us through various charitable initiatives and local partnerships.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🌍</div>
+                    <h3>Sustainability</h3>
+                    <p>We are committed to promoting environmentally friendly practices and offering eco-conscious vehicle options to our customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section - Completion -->
+    <section class="cta">
+        <div class="container">
+            <h2>Join the Tosh AutoHub Family</h2>
+            <p>Experience the difference of premium automotive service with a personal touch. Visit our showroom today and discover your dream vehicle.</p>
+            <a href="contact.html" class="btn">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Tosh AutoHub is a premium car dealership committed to providing exceptional vehicles and superior customer service since 2008.</p>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                        <a href="#">LI</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="inventory.html">Inventory</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                         <li>Waiyaki Way</li>
+                        <li>Westlands</li>
+                        <li>Phone: (+254) 711527211</li>
+                        <li>Email: info@toshautohub.com</li>
+                        <li>Mon-Sat: 9:00 AM - 7:00 PM</li>
+                        <li>Sunday: Closed</li>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" style="padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 4px; border: none;">
+                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tosh AutoHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => bar.classList.toggle('active'));
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Animate Timeline Items
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.style.opacity = 0;
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
